@@ -1,0 +1,34 @@
+{
+     "faqs": [
+        {
+          "question": "How can I get a proposal for my project?",
+          "answer": [
+            "Send us an <a href=\"mailto:darrell@under2.agency\" class=\"link\">email</a> with a quick summary of your project. Within 24 hours, we'll reply to set up an initial exploratory call. ",
+            "We'll ask many questions about your business, the project, the value you're looking to create and when you would like it to go live. ",
+            "We know we're not right for everyone, so the call's primary goal is to ensure that we're a good fit for you, and you for us."
+          ]
+        },
+        {
+          "question": "How much does it cost to hire you?",
+          "answer": [
+            "That depends on the type of engagement we have.",
+            "In consultancy engagements we dig deep into your business to understand your challenges and opportunities. Then we do research and analysis followed by actionable recommendations. Projects start at £5k and last around 2-3 weeks.",
+            "Smaller build projects start at £25k, typically builds are £150k+. Budget ultimately depends on the scope of the work."
+          ]
+        },
+        {
+          "question": "Can you help me with graphic design?",
+          "answer": [
+            "Yes. We have some in-house capability and work with a range of talented freelance designers for more complex projects. We're equally happy to work with your internal design team or a designer of your choice."
+          ]
+        },
+        {
+          "question": "What technology do you use?",
+          "answer": [
+            "We don't believe technology choices should drive decision making. We use whatever tech stack is best suited to your needs.",
+            "Our preference is to use Sanity as a headless CMS with the front-end NextJS. We've built WordPress & Gatsby sites and even plain old HTML/CSS/JS",
+            "Regardless of platform, we use modern development & deployment practices."
+          ]
+        }
+      ]
+}

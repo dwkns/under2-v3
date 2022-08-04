@@ -1,0 +1,18 @@
+---
+permalink: /robots.txt
+eleventyExcludeFromCollections: true
+---
+
+{%- if site[utils.currentEnv].allowRobots  -%}
+User-agent: *
+User-agent: * Disallow: /terms-and-conditions/
+User-agent: * Disallow: /cdn-cgi/l/email-protection
+
+{% if site[utils.currentEnv].createSitemap %}
+Sitemap: {{ site[utils.currentEnv].baseURL }}/sitemap.xml
+{% endif %}
+
+{%- else -%}
+User-agent: *
+Disallow: /
+{%- endif -%}

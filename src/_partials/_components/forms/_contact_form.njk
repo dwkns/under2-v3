@@ -1,0 +1,53 @@
+{%- macro form(
+    formType = 'contact',
+    loadingTitle = site.forms[formType].loadingTitle,
+    formTitle = site.forms[formType].formTitle,
+    formCTA = site.forms[formType].formCTA,
+    formButtonText = site.forms[formType].formButtonText,
+    thankYouTitle = site.forms[formType].thankYouTitle,
+    thankYouCTA = site.forms[formType].thankYouCTA,
+    thankYouButtonText = site.forms[formType].thankYouButtonText,
+    fields = "{
+      fields: {
+        email: { visible: true, default: '', validation: ['required', 'email'], errorMessage: '' },
+        firstName: { visible: true, default: '', validation: [], errorMessage: '' },
+        lastName: { visible: true, default: '', validation: [], errorMessage: '' },
+        country: { visible: true, default: '', validation: [], errorMessage: '' },
+        message: { visible: true, default: '', validation: [], errorMessage: '' },
+        }}",
+      titles = "{ 
+          formTitle: \""+formTitle+"\",
+          formCTA: \""+formCTA+"\",
+          formButtonText: \""+formButtonText+"\",
+          thankYouTitle: \""+thankYouTitle+"\",
+          thankYouCTA: \""+thankYouCTA+"\",
+          thankYouButtonText: \""+thankYouButtonText+"\"
+        }"
+    ) -%}
+  {%- import "_components/forms/_forms.njk" as formBase with context -%}
+  {%- import "_components/_icons.njk" as icons with context -%}
+
+  <div class="col-span-12 bg-u2-light-grey lg:col-span-6" x-data='gatedContent( "{{formType}}", {{fields}},{{titles}} )'  x-init="init()"  >
+
+   <div x-bind:class='!checkStatus("postForm") ? "" : "invisible"' >
+      <h3 x-show.transition.opacity='title !=""' x-text='title' class="pt-8 mt-0 text-3xl md:text-4xl font-display"></h3>
+      <p x-show.transition.opacity='cta !=""' x-text='cta' class="pb-4 mt-0 text-xl"></p>
+    </div>
+    
+    <div class="relative min-h-[750px]">
+      <div x-show.transition.opacity='checkStatus("initialisingForm")' class="absolute flex flex-col items-center justify-center transition " >
+        {{ icons.spinner()}}
+      </div>
+
+      <div x-cloak x-show.transition.opacity='checkStatus("showingForm")' class="absolute inset-0 px-4 pt-4 lg:px-8" >
+        {{ formBase.newForm(formType=formType)}}
+      </div>
+     
+      <div x-show.transition.opacity='checkStatus("postForm")' id="postSubmit" class="absolute inset-0 flex flex-col items-center justify-center w-full transition " >
+          <p  x-text="thankYouTitle" class="text-4xl text-center "></p>
+          <p  x-text="thankYouCTA" class="my-12 text-2xl text-center"></p>
+          {{ icons.tick()}} 
+      </div>
+    </div>
+    </div>
+  {%- endmacro -%}

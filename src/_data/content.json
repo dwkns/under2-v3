@@ -1,0 +1,16 @@
+{
+  "testimonials" : {
+    "marqeta" : {
+      "quote": "We needed a team to implement our European website working within a complex tech infrastructure. Under2 completely understood what problems needed to be solved and did so at speed, and in a highly professionally way.",
+      "person": "Mark Cousins",
+      "role": "Head of Marketing, Marqeta Europe",
+      "date": "2021-07-30T17:06:48.174"
+    },
+    "pslondon" : {
+      "quote": "Very few web builders understand that a great site is about being brilliantly designed, properly built and super-fast to use. Darrell and his team at Under2 do and that’s why they’re our first choice technical partner.",
+      "person": "Robert Pepper",
+      "role": "MD & Founder, PS London Ltd",
+      "date": "2021-07-30T17:06:48.174"
+    } 
+  }
+}

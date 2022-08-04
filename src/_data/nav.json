@@ -1,0 +1,61 @@
+{
+  "main": [
+    {
+      "name": "home",
+      "description": "",
+      "url": "/",
+      "showInMainNav": false,
+      "width": 48
+    },
+    
+    {
+      "name": "Printed Editions",
+      "description": "Printed Editions case study",
+      "url": "/case-studies/printed-editions-increased-organic-search-volume/",
+      "showInMainNav": false,
+      "showInFooter": false
+ 
+    },
+    {
+      "name": "What we do",
+      "description": "Our services and how<span class='lg:block'> we can help you</span>",
+      "url": "/what-we-do/",
+      "showInMainNav": true,
+      "showInFooter": true,
+      "width": 48
+    },
+
+    {
+      "name": "Insights",
+      "description": "Thoughts on creating high performance websites",
+      "url": "/insights/",
+      "showInMainNav": true,
+      "showInFooter": true,
+      "width": 48
+    },
+    {
+      "name": "Contact",
+      "description": "Get in touch",
+      "url": "/contact/",
+      "showInMainNav": true,
+      "showInFooter": true,
+      "width": 48
+    },
+    {
+      "name": "Resources",
+      "description": "Resources for creating high peformance websites",
+      "url": "/resources/",
+      "showInMainNav": false,
+      "showInFooter": true,
+      "width": 48
+    },
+    {
+      "name": "form test",
+      "description": "Form test",
+      "url": "/form-test/",
+      "showInMainNav": false,
+      "showInFooter": true,
+      "width": 48
+    }
+  ]
+}

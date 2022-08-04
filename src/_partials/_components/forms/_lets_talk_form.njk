@@ -1,0 +1,19 @@
+{%- macro form(props) -%}
+
+  <form  
+    id='contact-on-{{page.url}}'
+    name="Contact on {{page.url}}"
+    method="POST" 
+    data-netlify="true"
+    class="px-4 pt-4 pb-8 lg:px-8 bg-u2-light-grey">
+    <label for="name">First name</label>
+    <input name="name" id = "name" type="text">
+    <label for="email">Email</label>
+    <input name="email" id = "email" type="text">
+    <label for="company">Company</label>
+    <input name="company"  id = "company"  type="text" >
+    <label for="message">Message</label>
+    <textarea id = "message"name="message" cols="40" id="message" rows="5" ></textarea>
+    <button id='submitButton' type="submit" class="px-8 py-2 mt-8 mb-4 text-base font-semibold text-center transition duration-100 ease-in-out transform rounded-sm cursor-pointer focus:outline-none bg-u2-black hover:bg-u2-gold hover:scale-105 text-u2-white hover:text-u2-black">Get in touch</button>
+</form>
+{%- endmacro -%}

@@ -1,36 +1,486 @@
-@tailwind base;
+/* @tailwind base;
 @tailwind components;
+@tailwind utilities; */
+
+@import 'tailwindcss/base';
+@import 'tailwindcss/components';
 
 @font-face {
   font-family: 'Plex';
-  font-display: optional;
+  font-display: swap;
   src: url('/fonts/IBMPlexSans.var.latin-subset.woff2')
       format('woff2 supports variations'),
-    url('/fonts/IBMPlexSans.var.latin-subset.woff2') format('woff2-variations');
+    url('/fonts/IBMPlexSans.var.latin-subset.woff2')
+      format('woff2-variations');
   font-weight: 100 900;
   font-stretch: 25% 151%;
   unicode-range: U+000-5FF;
 }
 
-@tailwind utilities;
+@import 'tailwindcss/utilities';
 
-:root {
-  --brand: rgb(11, 134, 235);
-  --brand-alt: rgb(23, 161, 23);
+@layer base {
+  /* overide the base form styles */
+  [type='text'],
+  [type='email'],
+  [type='url'],
+  [type='password'],
+  [type='number'],
+  [type='date'],
+  [type='datetime-local'],
+  [type='month'],
+  [type='search'],
+  [type='tel'],
+  [type='time'],
+  [type='week'],
+  [multiple],
+  textarea,
+  select {
+    @apply w-full px-2 py-2 mt-1 rounded-sm shadow-inner text-u2-black bg-u2-white focus:ring-u2-gold focus:ring focus:border-u2-gold;
+  }
+
+  label {
+    @apply block mt-2 text-xl font-semibold lg:mt-4;
+  }
+
+  .form-input-error {
+    @apply w-full px-2 py-2 mt-1 text-sm bg-red-600 rounded-sm text-u2-white;
+  }
+
+  .slider-thumb::-webkit-slider-thumb {
+    @apply w-8 h-8 rounded-full shadow-xl appearance-none cursor-pointer bg-u2-gold ;
+  }
+
+  .slider-thumb::-webkit-slider-thumb:hover {
+    @apply bg-u2-gold ;
+  }
+
+
+  .slider-thumb::-moz-range-thumb {
+    @apply w-8 h-8 border-none rounded-full shadow-xl appearance-none cursor-pointer bg-u2-gold;
+  }
+
+  .slider-thumb::--moz-range-thumb:hover {
+    @apply bg-u2-gold ;
+  }
+  
+  
 }
 
+/* These should match tailwind.config.js */
+:root {
+  --u2-gold: rgb(244, 180, 26);
+  --u2-hover: #1c1d1f;
+  --u2-highlight-grey: #999;
+}
+
+[x-cloak] {
+  display: none !important;
+}
+
+/* Animatied Gradient Background */
 @layer utilities {
-  .dwkns-container {
-    @apply px-4 mx-auto sm:px-0 sm:w-93%;
-  }
+
+    .link {
+      cursor: pointer;
+      text-decoration-thickness: 3px;
+      text-decoration-line: underline;
+      text-decoration-color: var(--u2-gold);
+    }
+
+    .link:hover {
+      text-decoration-color: var(--u2-hover);
+    }
+
+    .link-on-dark {
+      cursor: pointer;
+      text-decoration-thickness: 3px;
+      text-decoration-line: underline;
+      text-decoration-color: var(--u2-gold);
+    }
+
+    .link-on-dark:hover {
+      text-decoration-color: #D3B420;
+    }
+
+    .hover-link:hover {
+      cursor: pointer;
+      text-decoration-thickness: 3px;
+      text-decoration-line: underline;
+      text-decoration-color: var(--u2-gold);
+    }
+
+    .hover-link-group {
+      cursor: pointer;
+      text-decoration-thickness: 3px;
+      text-decoration-line: underline;
+      text-decoration-color: var(--u2-gold);
+    }
+
+    .u2-gs-wrapper {
+      position: relative;
+      /*  16:9 = 56.25%, 1:1 = 100%, Goldern Ratio 1.618:1 = 61.8%  */
+      padding-bottom: 61.8%; /* Goldern Ratio */
+    }
+
+    .u2-gs-wrapper-tall {
+      position: relative;
+      /*  16:9 = 56.25%, 1:1 = 100%, Goldern Ratio 1.618:1 = 61.8%  */
+      padding-bottom: 161.8%; /* Goldern Ratio */
+    }
+
+    .u2-gs-wrapper-sq {
+      position: relative;
+      /*  16:9 = 56.25%, 1:1 = 100%, Goldern Ratio 1.618:1 = 61.8%  */
+      padding-bottom: 100%; /* Goldern Ratio */
+    }
+
+    .u2-gs-element {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+    }
+
+    .gradient-background {
+      background: linear-gradient(
+        -45deg,
+        rgb(244, 180, 26),
+        #ee7752,
+        #e73c7e,
+        #23a6d5,
+        #23d5ab
+      );
+      /* background: linear-gradient(-45deg,rgb(244, 180, 26), #58B4CC, #948834, #D35F8C, #993B7C, #58B4CC); */
+      background-size: 400% 400%;
+      animation: gradient 60s ease infinite;
+    }
+
+    .gradient-text {
+      background: linear-gradient(
+        -45deg,
+        rgb(244, 180, 26),
+        #ee7752,
+        #e73c7e,
+        #23a6d5,
+        #23d5ab
+      );
+      /* background: linear-gradient(-45deg,rgb(244, 180, 26), #58B4CC, #948834, #D35F8C, #993B7C, #58B4CC); */
+      background-size: 400% 400%;
+      animation: gradient 60s ease infinite;
+      -webkit-background-clip: text;
+      -moz-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      -moz-text-fill-color: transparent;
+    }
+
+    .gradient-none {
+      background: none;
+    }
+
+    @keyframes gradient {
+      0% {
+        background-position: 0% 50%;
+      }
+      50% {
+        background-position: 100% 50%;
+      }
+      100% {
+        background-position: 0% 50%;
+      }
+    }
+  
+}
+
+/* ul {
+  list-style: circle;
+  
+} */
+ul > li.bullets {
+  position: relative;
+  padding-left: 2rem;
+  margin-top: 1.5rem;
+  @apply text-lg sm:text-xl;
+}
+
+ul > li.bullets::before {
+  border-radius: 100%;
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0.56rem;
+  width: 0.7rem;
+  height: 0.7rem;
+  background-color: #1c1d1f;
+}
+
+ul > li.cbullets {
+  position: relative;
+  padding-left: 2rem;
+  margin-top: 1rem;
+}
+
+ul > li.cbullets::before {
+  /* border-radius: 100%; */
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0.56rem;
+  width: 0.7rem;
+  height: 0.7rem;
+  background-color: #1c1d1f;
+}
+
+ul > li.bullets-white::before {
+  background-color: #ffffff;
+}
+ul > li.bullets-cream::before {
+  background-color: #f4f1d3;
+}
+
+ul > li.bullets-gold::before {
+  background-color: rgb(244, 180, 26);
+}
+
+ul > li.bullets-grey::before {
+  background-color: #999;
+}
+
+/* Buttons 
+.primary-button, .primary-button-darkbg {
+  @apply  
+}
+
+.primary-button:hover {
+  @apply 
+}
+.primary-button-darkbg:hover {
+  @apply bg-u2-hover text-u2-black
+} */
+
+.gap-u2-gap {
+  @apply gap-u2-gap-sm sm:gap-u2-gap-lg;
+}
+
+.inactive-button {
+  @apply px-4 py-2 font-bold text-center bg-u2-inactive rounded-xl text-u2-black;
+}
+
+.breadcrumb {
+  @apply text-xl font-normal text-u2-highlight-grey;
+}
+
+.callout {
+  @apply text-2xl font-normal;
+}
+
+p {
+  @apply mt-6 text-lg leading-normal sm:mt-8 sm:text-xl sm:leading-relaxed;
+}
+
+h1 {
+  margin-bottom: 0.8em;
+  @apply text-4xl font-extrabold tracking-tight sm:text-5xl;
+}
+
+h2 {
+  margin-top: 2em;
+  @apply text-3xl font-extrabold sm:text-4xl;
+}
+
+h3 {
+  margin-top: 1.6em;
+  margin-bottom: 0.6em;
+  @apply text-xl font-extrabold sm:text-2xl;
+}
+
+h4 {
+  @apply mt-5 mb-5 text-xl;
+}
+
+h5 {
+  @apply mt-5 mb-5 text-xl;
+}
+
+.u2-prose {
+  max-width: 65ch;
+}
+
+.u2-prose a {
+  cursor: pointer;
+  text-decoration-thickness: 3px;
+  text-decoration-line: underline;
+  text-decoration-color: var(--u2-gold);
+}
+
+.u2-prose a:hover {
+  text-decoration-color: var(--u2-hover);
+}
+
+.u2-prose ul {
+
+  @apply mt-6 sm:mt-8 ;
+}
+
+.u2-prose > ul > li {
+  position: relative;
+  padding-left: 2rem;
+  margin-top: 1rem;
+  @apply max-w-2xl text-xl;
+}
+
+.u2-prose > ul > li::before {
+  border-radius: 100%;
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0.56rem;
+  width: 0.65rem;
+  height: 0.65rem;
+  background-color: #1c1d1f;
+}
+
+.u2-prose ol {
+
+  @apply mt-6 sm:mt-8 ;
+}
 
 
+.u2-prose ol > li {
+  position: relative;
+  padding-left: 1.75em;
+  margin-top: 1rem;
+  @apply max-w-2xl text-xl;
+}
 
-  .dwkns-grid {
-    @apply grid grid-cols-12 gap-4 sm:gap-8 lg:gap-16;
-  }
+.u2-prose ol > li::before {
+  content: counter(list-item, var(--list-counter-style, decimal)) '.';
+  position: absolute;
+  font-weight: 400;
+  color: #1c1d1f;
+  left: 0;
+}
 
-  .dwkns-mt {
-    @apply mt-4 sm:mt-8 lg:mt-16
-  }
+.u2-prose img {
+  margin-top: 2em;
+  margin-bottom: 2em;
+}
+
+.u2-prose figure figcaption {
+  font-size: 0.65em;
+  line-height: 1.4285714;
+
+  @apply -mt-6 text-u2-highlight-grey;
+}
+
+.u2-prose blockquote {
+  font-weight: 500;
+  font-style: italic;
+  color: #111827;
+  border-left-width: 0.25rem;
+  border-left-color: #e5e7eb;
+  quotes: '\201C''\201D''\2018''\2019';
+  margin-top: 1.6em;
+  margin-bottom: 1.6em;
+  padding-left: 1em;
+}
+
+.u2-prose blockquote p:first-of-type::before {
+  content: open-quote;
+}
+
+.u2-prose blockquote p:last-of-type::after {
+  content: close-quote;
+}
+
+.u2-prose code {
+  color: #111827;
+  font-weight: 600;
+  font-size: 0.55em;
+  @apply bg-u2-light-grey border border-gray-400 text-u2-highlight-greyAlt px-2 rounded-sm py-0.5;
+}
+
+.u2-prose pre {
+  color: #e5e7eb;
+  background-color: #1f2937;
+  overflow-x: auto;
+  font-size: 0.55em;
+  line-height: 1.7142857;
+  margin-top: 1.7142857em;
+  margin-bottom: 1.7142857em;
+  border-radius: 0.375rem;
+  padding-top: 0.8571429em;
+  padding-right: 1.1428571em;
+  padding-bottom: 0.8571429em;
+  padding-left: 1.1428571em;
+}
+
+.u2-prose pre code {
+  background-color: transparent;
+  border-width: 0;
+  border-radius: 0;
+  padding: 0;
+  font-weight: 400;
+  color: inherit;
+  font-size: inherit;
+  font-family: inherit;
+  line-height: inherit;
+}
+
+.u2-prose pre code::before {
+  content: none;
+}
+
+.u2-prose pre code::after {
+  content: none;
+}
+
+.u2-prose hr {
+  border-color: #e5e7eb;
+  border-top-width: 1px;
+  /* margin-top: 3em;
+  margin-bottom: 3em; */
+  @apply my-12;
+}
+
+.u2-prose table {
+  width: 100%;
+  table-layout: auto;
+  text-align: left;
+  margin-top: 2em;
+  margin-bottom: 2em;
+  font-size: 0.875em;
+  line-height: 1.7142857;
+}
+
+.u2-prose thead {
+  color: #111827;
+  font-weight: 600;
+  border-bottom-width: 1px;
+  border-bottom-color: #d1d5db;
+}
+
+.u2-prose thead th {
+  vertical-align: bottom;
+  padding-right: 0.5714286em;
+  padding-bottom: 0.5714286em;
+  padding-left: 0.5714286em;
+}
+
+.u2-prose tbody tr {
+  border-bottom-width: 1px;
+  border-bottom-color: #e5e7eb;
+}
+
+.u2-prose tbody tr:last-child {
+  border-bottom-width: 0;
+}
+
+.u2-prose tbody td {
+  vertical-align: top;
+  padding-top: 0.5714286em;
+  padding-right: 0.5714286em;
+  padding-bottom: 0.5714286em;
+  padding-left: 0.5714286em;
 }

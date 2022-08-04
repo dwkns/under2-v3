@@ -1,0 +1,118 @@
+{% set slug = eleventy.serverless.path.slug %}
+{% set query = eleventy.serverless.query.u2UID %}
+{% set queryValid = eleventy.serverless.query.u2UID | isValidID %}
+
+{%- if upgradeDetails.gatedContentIdNum -%}
+  {%- set contentID = upgradeDetails.gatedContentIdNum -%}
+  {%- set contenUpgradeURL = upgradeDetails.upgradeURL -%}
+{%- else -%}
+  {%- set contentID = gatedContentIdNum -%}
+  {%- set contenUpgradeURL = upgradeURL -%}
+{%- endif -%}
+{# Could be used to surpress all console.log messages.  #}
+{# {%- if not site[utils.currentEnv].debug -%}
+    {%- set setDebug = "console.log = function() {}" -%}
+{%- endif -%} #}
+
+<script data-log="Common functions used on gatedContent type pages">
+  {{ setDebug }}
+  window.u2PageData = (typeof window.u2PageData === 'undefined')
+    ? {
+      gatedContentIdNum: "{{ contentID }}",
+      formType: "{{ formType }}",
+      currentURL: "{{ page.url }}",
+      upgradeURL: "{{ contenUpgradeURL }}",
+      baseURL: "{{site[utils.currentEnv].baseURL}}",
+      pageType: "{{pageType}}",
+      isContentUpgrade: "{{isContentUpgrade}}"
+    }
+    : window.u2PageData;
+
+  createUnquieID = () => {
+    const min = 100000
+    const max = 5000000
+    let largeRandomNumber = Math.floor(Math.random() * (max - min + 1) + min)
+    let largeRandomNumberSquared = largeRandomNumber * largeRandomNumber
+    let hexString = largeRandomNumberSquared.toString(36);
+    let decodedHexString = parseInt(hexString, 36)
+    return hexString
+  }
+  
+  function getCookie(name) {
+    let value = `; ${document.cookie}`;
+    let parts = value.split(`; ${name}=`);
+    if (parts.length === 2) {
+      return parts
+        .pop()
+        .split(';')
+        .shift();
+    }
+  }
+
+  function isPageInCookie(pageID, cookie) {
+    let arr = cookieValue.split('-');
+    pageIDinCookie = arr.includes(pageID.toString())
+    return pageIDinCookie
+  }
+  
+  function addPageToCookie(pageID, cookie) {
+    let cookieArray = []
+    if (cookie) {
+      cookieArray = cookie.split('-');
+    }
+    
+    cookieArray.push(pageID);
+    let cookieValue = cookieArray.join('-');
+    document.cookie = `visitedWP=${cookieValue}; expires=Fri, 31 Dec 9999 23:59:59 GMT; SameSite=None; path=/ `; 
+  }
+</script>
+{% if queryValid  %}  
+  <script data-log="Page has valid query string. {{queryValid}}">
+  console.log(`looks like the query is valid : {{queryValid}}`)
+    let pageID = window.u2PageData.gatedContentIdNum;
+    let cookieValue = getCookie('visitedWP');
+    if (cookieValue) {
+      // The cookie exists
+      let pageInCookie = isPageInCookie(pageID, cookieValue)
+      if (!pageInCookie) {
+        //Add page to cookie
+       
+        addPageToCookie(pageID, cookieValue)
+      } else {
+        //Page already in Cookie
+      }
+    } else {
+      //Cookie doesn't exists
+      
+      addPageToCookie(pageID, cookieValue)
+      //Add page to cookie
+    }
+  </script>
+{% else %}
+  <script data-log="Page doesn't have query string. Check cookie">
+    let pageID = u2PageData.gatedContentIdNum;
+    //console.log(`pageID (in page)`,pageID)
+    let cookieValue = getCookie('visitedWP');
+    // console.log(`Cookie value (in page)`,cookieValue)
+    if (cookieValue) {
+      let pageInCookie = isPageInCookie(pageID, cookieValue)
+
+       //console.log(`pageInCookie  (in page)`,pageInCookie)
+      if (pageInCookie) {
+        let pageType = u2PageData.pageType;
+        let isContentUpgrade = u2PageData.isContentUpgrade;
+        //console.log(`pageType  (in page)`,pageType)
+      
+        let currentURL = `${u2PageData.baseURL}${u2PageData.currentURL}`
+
+        //console.log(`currentURL  (in currentURL)`, pageType)
+        if (pageType == 'gatedContent' || isContentUpgrade ) {
+    
+          window
+            .location
+            .assign(`${currentURL}complete?u2UID=${createUnquieID()}`)
+        }
+      }
+    }
+  </script>
+{% endif %}  

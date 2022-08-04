@@ -1,0 +1,181 @@
+{
+  "name": "Under2",
+  "legalName": "Under2 Limited",
+  "url": "https://under2.global",
+  "logo": "https://under2.global/images/u2-logo-for-white.png",
+  "foundingDate": "2019",
+  "privacyEmail": "privacy@under2.global",
+  "companyAddress": "7 Bell Yard, London, United Kingdom, WC2A 2JR",
+  "address": { 
+     "type": "PostalAddress", 
+     "streetAddress": "7 Bell Yard", 
+     "addressRegion": "London", 
+     "postalCode": "WC2A 2JR", 
+     "addressCountry": "UK" },
+  "twitterURL" : "https://twitter.com/under2global",
+  "linkedInURL" : "https://www.linkedin.com/company/under2/",
+  "author": {
+    "handle": "@dwkns",
+    "name": "dwkns"
+  },
+  "googleAnalyticsID": "G-YW7QMHS01K",
+  "actOnID": "44267",
+  "linkedInID": "3949985",
+  "urls": {
+    "production": "https://under2.global",
+    "staging": "https://staging.under2.global",
+    "development": "http://localhost:8080"
+  },
+  "font":"IBMPlexSans.var.latin-subset-c.woff2",
+  "development": {
+    "baseURL":  "http://localhost:8080",
+    "domain": "localhost",
+    "debug": true,
+    "debugScreens": false,
+    "showDefaultTextInForms": true,
+    "formsActive": false,
+    "speedcurveActive": false,
+    "linkedInActive": false,
+    "googleAnalyticsActive": false,
+    "actOnActive": false,
+    "createSitemap" : true,
+    "allowIndexing" : false,
+    "allowRobots" : false,
+    "inlineCSS" : false,
+    "compressCSS" : false,
+    "compressHTML": false
+  },
+  "staging": {
+    "baseURL":  "https://staging.under2.global",
+    "domain": "staging.under2.global",
+    "debug": false,
+    "debugScreens": false,
+    "showDefaultTextInForms": false,
+    "formsActive": false,
+    "speedcurveActive": false,
+    "linkedInActive": false,
+    "googleAnalyticsActive": false,
+    "actOnActive": false,
+    "createSitemap" : true,
+    "allowIndexing" : false,
+    "allowRobots" : false,
+    "inlineCSS" : true,
+    "compressCSS" : true,
+    "compressHTML": true
+  },
+  "production": {
+    "baseURL":  "https://under2.global",
+    "domain": "under2.global",
+    "debug": false,
+    "debugScreens": false,
+    "showDefaultTextInForms": false,
+    "formsActive": true,
+    "speedcurveActive": true,
+    "linkedInActive": true,
+    "googleAnalyticsActive": true,
+    "actOnActive": true,
+    "createSitemap" : true,
+    "allowIndexing" : true,
+    "allowRobots" : true,
+    "inlineCSS" : true,
+    "compressCSS" : true,
+    "compressHTML": true
+  },
+  "defaultMessages": {
+    "privacy": "We will only use your data to contact you, analyze our marketing performance, provide access to our content or keep in touch. By continuing you agree to our <a class='link' href='/privacy-policy/'>Privacy Policy.</a>",
+    "acceptMarketing": "Would you also like our insights on creating high performance websites? We'll send a few emails each month with our latest content and new services.",
+    "acceptMarketingCheckboxLabel": "Sounds good. Sign me up!",
+    "formSuccess": "Sounds good. Sign me up!"
+  },
+  "links": {
+    "privacy": "/privacy-policy/"
+  },
+  "og": {
+    "locale": "en_GB",
+    "defaultType": "Article",
+    "siteName": "Article",
+    "image": "/images/u2-og-image.png",
+    "twitterImage": "/images/u2-og-twitter-image.png",
+    "twitterSite": "@under2global",
+    "twitterDomain": "under2.global"
+  },
+  "forms": {
+    "contact": {
+      "aoListID": "l-0001",
+      "aoFormID": "61c529e1-c307-4bb2-8ffb-2a32935bb992",
+      "loadingTitle": "Loading form",
+      "formTitle": "",
+      "formCTA": "",
+      "formButtonText": "Send us your message",
+      "thankYouTitle": "Thanks for contacting us.",
+      "thankYouCTA": "We'll be in touch soon.",
+      "thankYouButtonText": ""
+    },
+    "letsTalk": {
+      "aoListID": "l-0002",
+      "aoFormID": "fc016a8c-7739-4c52-a1c3-a4bdc8dbe0f7",
+      "loadingTitle": "Loading form",
+      "formTitle": "",
+      "formCTA": "",
+      "formButtonText": "Send us your message",
+      "thankYouTitle": "Thanks for contacting us.",
+      "thankYouCTA": "We'll be in touch soon.",
+      "thankYouButtonText": ""
+    },
+    "learnFromUs": {
+      "aoListID": "l-0003",
+      "aoFormID": "792053ab-0f4c-48dd-a748-fff8cc7b4d91",
+      "loadingTitle": "Loading form",
+      "formTitle": "Learn from us",
+      "formCTA": "Sign up and recieve our insights direct to you inbox. No spam and unsubscribe anytime.",
+      "formButtonText": "Sign up now",
+      "thankYouTitle": "Thanks for signing up.",
+      "thankYouCTA": "We'll send you email shortly",
+      "thankYouButtonText": ""
+    },
+    "contentUpgrade": {
+      "aoListID": "l-0004",
+      "aoFormID": "ed6c8396-0adb-4e8e-b6fd-4fd24a963b0c",
+      "loadingTitle": "Loading form",
+      "formTitle": "DEFAULT FORM TITLE",
+      "formCTA": "DEFAULT FORM CTA",
+      "formButtonText": "Access now",
+      "thankYouTitle": "DEFAULT THANKYOU TITLE",
+      "thankYouCTA": "DEFAULT THANKYOU CTA",
+      "thankYouButtonText": "Access now"
+    },
+    "gatedContent": {
+      "aoListID": "l-0005",
+      "aoFormID": "56a19c5b-2234-4b1d-b0ac-d664be021c35",
+      "loadingTitle": "Loading form",
+      "formTitle": "Unlock this free article",
+      "formCTA": "Just give us your email below",
+      "formButtonText": "Access now",
+      "thankYouTitle": "Thank you",
+      "thankYouCTA": "Redirecting now...",
+      "thankYouButtonText": ""
+    },
+    "pastWebinar": {
+      "aoListID": "l-0006",
+      "aoFormID": "67332e04-3c8a-48c7-b015-8afc1ccc5f0b",
+      "loadingTitle": "Loading form",
+      "formTitle": "pastWebinar SET THE DEFAULTS",
+      "formCTA": "pastWebinar SET THE DEFAULTS",
+      "formButtonText": "pastWebinar SET THE DEFAULTS",
+      "thankYouTitle": "pastWebinar SET THE DEFAULTS",
+      "thankYouCTA": "pastWebinar SET THE DEFAULTS",
+      "thankYouButtonText": "pastWebinar SET THE DEFAULTS"
+    },
+    "webinar": {
+      "aoListID": "l-0007",
+      "aoFormID": "2f9480f5-b52b-4e11-a973-09e594de1df6",
+      "loadingTitle": "Loading form",
+      "formTitle": "webinar SET THE DEFAULTS",
+      "formCTA": "webinar SET THE DEFAULTS",
+      "formButtonText": "webinar SET THE DEFAULTS",
+      "thankYouTitle": "webinar SET THE DEFAULTS",
+      "thankYouCTA": "webinar SET THE DEFAULTS",
+      "thankYouButtonText": "webinar SET THE DEFAULTS"
+    }
+  }
+}

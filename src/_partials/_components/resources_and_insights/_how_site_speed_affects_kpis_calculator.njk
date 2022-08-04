@@ -1,0 +1,142 @@
+  {# <div class="grid grid-cols-12 gap-u2-gap-lg"> #}
+{%- macro roi_calc() -%}
+<div class="grid grid-cols-12 gap-u2-gap-sm" x-data="range()"  x-init="init()">
+  <div class="col-span-12 ">
+    <div class="flex flex-col">
+      <h3 class=" text-u2-highlight-grey" >Page load time (in seconds)</h3>
+      <div class="relative w-full mt-8 range-slider">
+        <p id="rs-cont" class="absolute flex justify-center w-16 border-2 border-black rounded-full bottom-8">
+          <span id="rs-bullet" class=""></span>
+        </p>
+        <input id="rs-range-line" x-on:input="trigger" x-model="slider_value" class="w-full h-2 rounded outline-none appearance-none bg-u2-black slider-thumb" type="range" value="0" min="1" max="10">
+      </div>
+    </div>
+  </div> 
+  <div class="flex items-center justify-between col-span-12 px-4 font-extrabold sm:justify-center sm:text-center h-28 sm:flex-col sm:col-span-4 sm:h-48 bg-u2-black text-u2-orange">
+    <p class="my-0 text-lg sm:h-16 md:h-20 sm:text-xl lg:text-base xl:text-xl text-u2-cream">Probability of bounce increase</p>
+    <p class="mt-2 mb-0 text-4xl sm:text-5xl lg:text-4xl xl:text-5xl 2xl:text-6xl" x-text="stat1"></p>
+  </div>
+  <div class="flex items-center justify-between col-span-12 px-4 font-extrabold sm:justify-center sm:text-center h-28 sm:flex-col sm:col-span-4 sm:h-48 bg-u2-black text-u2-purple">
+    <p class="my-0 text-lg sm:h-16 md:h-20 sm:text-xl lg:text-base xl:text-xl text-u2-cream">Conversion Rate</p>
+    <p class="mt-2 mb-0 text-4xl sm:text-5xl lg:text-4xl xl:text-5xl 2xl:text-6xl" x-text="stat2"></p>
+  </div>
+  <div class="flex items-center justify-between col-span-12 px-4 font-extrabold sm:justify-center sm:text-center h-28 sm:flex-col sm:col-span-4 sm:h-48 bg-u2-black text-u2-green">
+    <p class="my-0 text-lg sm:leading-tight sm:h-16 md:h-20 sm:text-xl lg:text-base xl:text-xl text-u2-cream">Page abandonment increase</p>
+    <p class="mt-2 mb-0 text-4xl sm:text-5xl lg:text-4xl xl:text-5xl 2xl:text-6xl" x-text="stat3"></p>
+  </div>
+</div>
+
+  <script>
+    var rangeSlider = document.getElementById("rs-range-line");
+    var rangeBulletCont = document.getElementById("rs-cont");
+    var rangeBullet = document.getElementById("rs-bullet");
+
+    rangeSlider.addEventListener("input", showSliderValue, false);
+
+    function showSliderValue(val) {
+      console.log("------------------------------------");
+      let sliderValue = val || rangeSlider
+        .value
+
+        console
+        .log("sliderValue", sliderValue);
+
+      rangeBullet.innerHTML = `${sliderValue}s`;
+
+      // let sliderVal = sliderValue
+      let parentWidth = rangeSlider.parentElement.clientWidth
+
+      let thumbWidth = 32
+
+      let notch = (parentWidth - thumbWidth) / (rangeSlider.max - 1)
+
+      let pos = notch * sliderValue
+      rangeBulletCont.style.left = `${pos - notch - (thumbWidth / 2)}px`;
+
+      console.log("rangeSlider.max", rangeSlider.max);
+      console.log("parentWidth", parentWidth);
+      console.log("notch", notch);
+      console.log("pos", pos);
+    }
+
+    function range() {
+      let start_value = 5
+      showSliderValue(start_value)
+      function stat1(val) {
+
+        let data = {
+          1: 0,
+          2: 15,
+          3: 32,
+          4: 61,
+          5: 90,
+          6: 106,
+          7: 111,
+          8: 115,
+          9: 119,
+          10: 123,
+
+        }
+
+        // let num = parseInt(val, 10) + 10
+        let op = `${data[val]}%`
+        return op
+      }
+      function stat2(val) {
+        let data = {
+          1: 6.73,
+          2: 11.4,
+          3: 8.86,
+          4: 7.29,
+          5: 6.02,
+          6: 5.04,
+          7: 4.53,
+          8: 3.18,
+          9: 3.14,
+          10: 2.8,
+
+        }
+
+        // let num = parseInt(val, 10) + 10
+        let op = `${data[val]}%`
+        return op
+      }
+      function stat3(val) {
+        let data = {
+          1: 6.0,
+          2: 11.9,
+          3: 17.9,
+          4: 24.6,
+          5: 27.4,
+          6: 30.6,
+          7: 33.2,
+          8: 35.0,
+          9: 36.9,
+          10: 38.6
+
+        }
+
+        // let num = parseInt(val, 10) + 10
+        let op = `${data[val]}%`
+        return op
+      }
+      return {
+        slider_value: start_value,
+        stat1: stat1(start_value),
+        stat2: stat2(start_value),
+        stat3: stat3(start_value),
+        trigger() {
+          showSliderValue()
+          this.stat1 = stat1(this.slider_value)
+          this.stat2 = stat2(this.slider_value)
+          this.stat3 = stat3(this.slider_value)
+        },
+        init() {
+          return
+        }
+      }
+    }
+  </script>
+{%- endmacro -%}
+
+  {# </div> #}

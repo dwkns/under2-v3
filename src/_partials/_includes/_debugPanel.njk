@@ -1,0 +1,127 @@
+{%- set isServerless = false -%}
+{% if eleventy.serverless %}
+  {%- set isServerless = true -%}
+{%- endif -%}
+
+<div class="fixed bottom-0 z-20 text-xs bg-opacity-100 left-20 text-u2-white bg-u2-pink">
+  <div x-data="debugData()">
+    <div x-show="open" class="pb-4 ml-2 ">
+
+      <span class="block my-1 ">Env: {{ utils.currentEnv}}</span>
+      <span class="block my-1 ">URL: {{ site[utils.currentEnv].baseURL}}</span>
+      <span class="block my-1">Serverless: {{isServerless}}</span>
+      <span class="block my-1 ">Forms submitting: {{ site[utils.currentEnv].formsActive}}</span>
+      <span class="block my-1 ">googleAnalyticsActive: {{ site[utils.currentEnv].googleAnalyticsActive}}</span>
+      <span class="block my-1 ">actOnActive: {{ site[utils.currentEnv].actOnActive}}</span>
+      <span class="block my-1 " id="country-debug"></span>
+      <span x-text="getCountry()" class="block my-1"></span>
+      <span class="block my-1 " x-text="nfCookieValue()"></span>
+      <span class="block my-1 ">debug: {{ site[utils.currentEnv].debug}}</span>
+      <span class="block my-1 ">showDefaultTextInForms: {{ site[utils.currentEnv].showDefaultTextInForms}}</span>
+      {# <button @click="removeGatedContentCookies" class="px-2 py-1 mx-1 rounded-sm hover:bg-red-400 bg-u2-purpleAlt">Remove gated content cookies</button> #}
+      <button @click="removeAcceptPrivacyCookie" class="px-2 py-1 mx-1 rounded-sm hover:bg-red-400 bg-u2-purpleAlt">Remove privacy cookie</button>
+    </div>
+    <div class="flex flex-wrap items-center ">
+
+      <span class="px-2">Current Article ID: <span x-text="getArticleIDfromWindow()" ></span></span>
+      <span x-text="getArticleCookie()" class="px-2"></span>
+      <button @click="removeGatedContentCookiesRedirect" class="px-2 py-1 mx-1 rounded-sm hover:bg-red-400 bg-u2-purpleAlt">Remove gated cookies & redirect</button>
+      <button @click="open = !open" class="px-2 py-1 mx-1 rounded-sm hover:bg-red-400 bg-u2-green" >Toggle Full</button>
+    </div>
+  </div>
+</div>
+<script>
+  debugData = () => {
+    const logCookie = () => {
+      // log the cookie out so we can see which pages are in it.
+      console.log(`Logging cookies...`)
+      let cookie = Cookies.get('visitedWP')
+      if (cookie) {
+        let cookieArray = cookie.split('-');
+        console.log(`Cookie array is ${cookieArray}`)
+      } else {
+        console.log(`❌ no cookie detected`)
+      }
+    }
+
+    return {
+      open: false,
+
+      getArticleIDfromWindow() {
+
+        return (typeof window.u2PageData === 'undefined')
+          ? 'no page ID'
+          : window.u2PageData.gatedContentIdNum
+
+      },
+      getCountry() {
+        // Look for the cookie set by Cloudflare
+        let country = Cookies.get('detected-country')
+
+        if (country == undefined) {
+          return 'country: none'
+        }
+        return `country: ${country}`
+      },
+
+      nfCookieValue() {
+        // Look for the cookie set by Cloudflare
+        let nf = Cookies.get('nf_807d9');
+        if (nf == undefined) {
+          return 'nf cookie: none'
+        }
+        return `nf cookie: ${nf}`
+      },
+
+      getArticleCookie() {
+        let articleCookie = Cookies.get('visitedWP');
+        if (articleCookie == undefined) {
+          return `Visited article ID's: none`
+        }
+        return `Visited article ID's: ${articleCookie}`
+      },
+
+      removeGatedContentCookies() {
+        Cookies.remove('visitedWP');
+        logCookie()
+        event.preventDefault();
+      },
+
+      removeGatedContentCookiesRedirect(event) {
+        Cookies.remove('visitedWP');
+        logCookie()
+
+        let str = window
+          .location
+          .href
+          console
+          .log(str)
+        newStr = str.split('complete?')[0]
+
+        console.log(newStr)
+        event.preventDefault();
+        setTimeout(() => {
+          window
+            .location
+            .replace(newStr);
+        }, 0);
+      },
+
+      removeAcceptPrivacyCookie() {
+        console.log('removeAcceptPrivacyCookie')
+        Cookies.remove('acceptPrivacy')
+        logCookie()
+        document
+          .getElementById("cookie-banner")
+          .classList
+          .remove("hidden");
+        document
+          .getElementById("cookie-banner")
+          .classList
+          .add("fixed");
+        event.preventDefault();
+      }
+
+    }
+  }
+</script>

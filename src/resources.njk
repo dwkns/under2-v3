@@ -1,0 +1,124 @@
+---
+title: "Resources for creating high peformance websites"
+headTagTitleForSEO: "Resources for creating high peformance websites"
+description: "Checklists, tools and other resources to help you create a high performance website"
+og_image: '/images/resources-og.png'
+permalink: /insights/resources/
+noindex: false
+sitemap: true
+layout: _regular_page.njk
+---
+{% import "_components/_common.njk" as common with context %}
+{% import "_components/_insights_components.njk" as insights with context %}
+{%- import "_components/forms/_learn_from_us_form.njk" as learnFromUs with context -%}
+
+{% import "_components/_icons.njk" as icons with context %}
+
+{{ common.pageHeader(
+      title = title,
+      subTitle = "" ,
+      breadcrumb = { title: 'Resources' , breadCrumbIsH1: true, breadCrumbLink: "" }
+    ) }}
+
+{{ common.dividerLine() }}
+
+{%- macro resourcesItem(iconName = "none", itemType="none", itemTitle="", itemLink = "#", itemDecription= "none") -%}
+  <div class="col-span-12 col-start-1 bg-u2-black md:col-span-6 md:col-start-1 p-u2-pad group">
+    <a class="" href="{{itemLink}}">
+      <div class="flex flex-row items-center text-u2-highlight-grey">
+        {{ icons.getIcon(iconName = iconName, colour="group-hover:hover-link-group group-hover:text-u2-white zbg-pink-300")}}
+        <span class="ml-1 pt-0.5 text-lg leading-tight font-display group-hover:hover-link-group group-hover:text-u2-white">{{itemType}}</span>
+      </div>
+      {%- if itemTitle -%}
+        <h3 class="my-0 mt-4 text-u2-white">{{itemTitle}}</h3>
+      {%- endif -%}
+      <p class="mt-2 text-u2-white">{{itemDecription}}</p>
+    </a>
+  </div>
+
+{%- endmacro -%}
+
+<section class="mx-auto max-w-screen-3xl px-u2-gutter-sm sm:px-u2-gutter">
+  <div class="grid grid-cols-12 gap-u2-gap">
+    {{ resourcesItem(
+      iconName = "whitepaper", 
+      itemType="Glossary", 
+      itemDecription= "Breakdown of all the the terms we use and what they mean",
+      itemLink = "/insights/resources/glossary/"
+      )}}
+    {{ resourcesItem(
+      iconName = "whitepaper", 
+      itemType="Calculator", 
+      itemTitle="How Site Speed Affects Key Performance Metrics", 
+      itemDecription= "Faster site speed means better UX, higher search visibility, and more conversions. Discover what your FinTech stands to gain from a high performance site.",
+      itemLink = "/insights/resources/site-speed-calculator-fintech/"
+      )}}
+    {{ resourcesItem(
+      iconName = "whitepaper", 
+      itemType="Checklist", 
+      itemTitle="Keep your enterprise website build on track", 
+      itemDecription= "A checklist covering the 4 stages of a successful design and build project",
+      itemLink = "/insights/keep-your-enterprise-website-build-on-track/"
+      )}}
+    {{ resourcesItem(
+      iconName = "whitepaper", 
+      itemType="Whitepaper", 
+      itemTitle="What High Performance Really Means for Enterprise FinTech Websites", 
+      itemDecription= "Most people define website performance as the measurement and optimisation of page load times. But this narrow view hinders your firm's ability to achieve the high performance site your FinTech business needs. Start by properly articulating what high performance means and learn the steps needed to achieve it",
+      itemLink = "/insights/what-high-performance-really-means-for-enterprise-fintech-websites/"
+      )}}
+  </div>
+</div>
+</section>
+
+{#   <div class="col-span-12 lg:col-span-6 text-u2-white ">
+      {% if category.title == 'all' %}
+        {% set posts = collections.insightPosts %}
+      {% else  %}
+        {% set posts = collections.insightPosts | matchPostsWithCategory("data.category", category.title) %}
+      {% endif %}
+
+      {% for post in posts %}
+        <div class="{{ 'mt-0' if loop.first else 'mt-12' }}  col-span-12 md:col-span-6 xl:col-span-4 2xl:col-span-3 h-96 lg:h-128  text-white bg-u2-black  ">
+          {% import "_components/_icons.njk" as icons with context %}
+          <a class=" group" href="{{post.url}}">
+            <div class="flex flex-col justify-between h-full p-4 sm:p-6 md:p-6 lg:p-8">
+              <div class="flex flex-row items-center bg-green-800x text-u2-highlight-grey">
+                {{ icons.getIcon(post.data.type)}}
+                <span class="ml-4 text-lg leading-tight font-display">{{post.data.type}}</span>
+              </div>
+              <div class="bg-green-800x">
+                <h2 class="mt-0 text-2xl xl:text-3xl">{{post.data.title}}</h2>
+                <p class="mt-2 text-base text-u2-highlight-grey">by {{post.data.author}} on {{post.data.date | readableDate}}</p>
+                <p class="inline-block px-3 py-1 mt-2 text-xs font-semibold rounded-full bg-u2-highlight-grey text-u2-white ">{{post.data.category}}</p>
+                <p class="hidden mt-6 text-lg md:block">{{post.data.summary}}</p>
+              </div>
+              <div class="bg-green-800x">
+                {% import "_components/_buttons.njk" as buttons with context %}
+                {{ buttons.button(text = 'Read now', url='/what-we-do', colour='onBlack', group=true, topMargin='')}}
+              </div>
+            </div>
+          </a>
+        </div>
+      {% endfor %}
+
+    </div> #}
+{# Right Col form #}
+{# <div  class="col-span-12 lg:col-span-6 xl:col-span-6 lg:col-start-8 xl:col-start-8 lg:mt-0 ">
+      {{learnFromUs.form()}}
+    </div>
+  </div>
+</section> #}
+
+{# <section class="mx-auto mt-12 max-w-screen-3xl px-u2-gutter-sm sm:px-u2-gutter md:mt-48">
+    <div class="grid grid-cols-12 gap-u2-gap">
+      <div class="col-span-12">
+        <h2 class="text-4xl font-display">Latest insights</h2>
+      </div>
+      {% set posts = collections.insightPosts %}
+      
+      <div class="col-span-12">
+        {{ buttons.button(text='Get more insights',url='/insights/') }}
+      </div>
+    </div>
+  </section> #}

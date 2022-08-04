@@ -1,77 +1,58 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
+    {%- if site[utils.currentEnv].speedcurveActive  -%}
+      {%- include "_includes/_speedcurve.njk" -%}
+    {%- endif -%}
     <meta charset="UTF-8">
-    <title>{{ title }}</title>
+    <title>{{ headTagTitleForSEO if headTagTitleForSEO else title }}</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <meta name="theme-color" content="{{site.theme.colour}}"/>
-    <meta name="generator" content="{{ eleventy.generator }}">
+    {%- include "_includes/_fonts.njk" -%}
+    {%- include "_includes/_favicons.njk" -%}
+    {%- include "_includes/_meta_seo_og.njk" -%}
+    {%- if pageType=='gatedContent' or pageType=='contentUpgrade' -%}
+      {%- include "_includes/_gated_redirect.njk"  -%}
+    {%- endif -%}
+    <script defer src="/scripts/main.js?version={{ utils.version }}"></script>
+    {# {%- set isServerless = false -%}
+    {% if eleventy.serverless %}
+      {%- set isServerless = true -%}
+    {%- endif -%} #}
+    {%- if site[utils.currentEnv].inlineCSS  -%}
+      {# Inline CSS only gets created on server start or build, not on HMR/Browsersync changes. #}
+      {%- set css -%}
+      {%- include "../../styles/compiled.css" -%}
+      {%- endset -%}
+      <style>
+        {{css | safe}}
+      </style>
+    {%- else -%}
+      <link rel="stylesheet" href="/styles/compiled.css?version={{ utils.version }}">
+    {%- endif -%}
 
-    <link rel="preload" href="/fonts/IBMPlexSans.var.latin-subset.woff2" as="font" type="font/woff2" crossorigin>
-    <link rel="stylesheet" href="/styles/compiled.css">
-    {# <script defer src="/scripts/main.js"></script> #}
+    <link rel="preconnect" href="https://a44267.actonservice.com">
+    <link rel="dns-prefetch" href="https://a44267.actonservice.com">
 
-  </head>
-  <body class="{{ 'debug-screens' if site[site.currentEnv].debug }}">
-    {{ content | safe }}
+    <link rel="preconnect" href="https://snap.licdn.com">
+    <link rel="dns-prefetch" href="https://snap.licdn.com">
 
-    <p class="">totalTimeSinceStart: <input id="totalTimeSinceStart" size="6" readonly=""/>ms</p>
-    <p class="">totalTimeOnPage: <input id="totalTimeOnPage" size="6" readonly=""/>ms</p>
-    <p class="">last gap: <input id="lastGap" size="6" readonly=""/>ms</p>
-    <p class="">totalTimeOffPageElement: <input id="totalTimeOffPage" size="6" readonly=""/>ms</p>
+    <link rel="preconnect" href="https://www.googletagmanager.com">
+    <link rel="dns-prefetch" href="https://www.googletagmanager.com">
 
     <script>
-
-      var totalTimeSinceStartElement = document.getElementById("totalTimeSinceStart");
-      var lastGapElement = document.getElementById("lastGap");
-      var totalTimeOffPageElement = document.getElementById("totalTimeOffPage");
-      var totalTimeOnPageElement = document.getElementById("totalTimeOnPage");
-
-      let startTime = performance.now();
-      let totalTimeOffPage = 0
-      let totalTimeSinceStart = 0
-
-      document.addEventListener("visibilitychange", event => {
-        if (document.visibilityState === "visible") {
-          performance.mark("gainedFocus"); // mark when the tab becomes visible
-
-          // measure time since last lostFocus event
-          let timeOffPage = performance
-            .measure("timeOffPage betwee:", "lostFocus", "gainedFocus")
-            .duration
-
-          // increment the totalTimeOffPage counter
-          totalTimeOffPage += timeOffPage
-
-          lastGapElement.value = Math.round(timeOffPage)
-          totalTimeOffPageElement.value = Math.round(totalTimeOffPage)
-
-        } else {
-          performance.mark("lostFocus"); // mark when the tab is not visible
-        }
-      })
-
-      requestAnimationFrame(function updateTimeSpent() {
-        totalTimeSinceStart = performance.now() - startTime
-        totalTimeOnPage = totalTimeSinceStart - totalTimeOffPage
-
-        totalTimeSinceStartElement.value = Math.round(totalTimeSinceStart) // update the UI
-        totalTimeOnPageElement.value = Math.round(totalTimeOnPage) // update the UI
-
-        requestAnimationFrame(updateTimeSpent);
-      });
-
-      const sendBeacon = () => {
-         totalTimeSinceStart = performance.now() - startTime
-        totalTimeOnPage = totalTimeSinceStart - totalTimeOffPage
-      }
-
-      // const beforeunload = function () {
-      //   totalTimeSinceStart = performance.now() - startTime
-      //   totalTimeOnPage = totalTimeSinceStart - totalTimeOffPage
-      //   // totalTimeOnPage is the time on Page
-      // };
+      {%- set formsActive = site[utils.currentEnv].formsActive -%}
+      {%- set showDefaultTextInForms = site[utils.currentEnv].showDefaultTextInForms -%}
+      window.formsActive = {{ formsActive }};
+      window.showDefaultTextInForms = {{ showDefaultTextInForms }};
     </script>
+
+  </head>
+  <body data-env={{ site[utils.currentEnv].domain }} class="{{ 'debug-screens' if site[utils.currentEnv].debugScreens  }} bg-u2-white">
+    {%- include "_includes/_cookie-banner.njk" -%}
+    {{ content | safe }}
+    {%- if site[utils.currentEnv].googleAnalyticsActive -%}
+      {%- include "_includes/trackers/_googleAnalytics.njk" -%}
+    {%- endif -%}
   </body>
 </html>

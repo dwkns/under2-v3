@@ -1,0 +1,115 @@
+{# Show a post on the Insights landung pages. #}
+{% macro insightpageTitleBlock(breadcrumb = {
+  title: "All insights",
+  breadCrumbIsH1: false,
+  breadCrumbLink: "/insights/"
+}, title = title, subTitle = "", insightsSection = true) %}
+  {% import "_components/_common.njk" as common with context %}
+  {{ common.pageHeader( breadcrumb , title, subTitle, insightsSection ) }}
+{% endmacro %}
+
+{%- macro metaBlock() -%}
+  {%- if not isContentUpgrade -%}
+    <section class="mx-auto max-w-screen-3xl px-u2-gutter-sm sm:px-u2-gutter">
+      <p class="text-base text-u2-highlight-grey">{{type | addAnOrA | capitalize }} by {{author}} on {{date | readableDate}}</p>
+      <a href="{{ '/insights/' + ( category  | slugify )+'/' }}">
+        <p class="inline-block px-3 py-1 mt-2 text-xs font-semibold rounded-full bg-u2-highlight-grey text-u2-white hover:bg-u2-hover hover:text-u2-black">{{category}}</p>
+      </a>
+    </section>
+  {%- endif -%}
+{%- endmacro -%}
+
+{% macro headerMenu() %}
+  {% import "_components/_icons.njk" as icons with context %}
+  <div class="h-full col-span-12 text-lg lg:col-span-4 lg:col-start-8 text-u2-highlight-grey " >
+    <ul class="mt-4">
+      {% for category in collections.insightCategories %}
+
+        {% set currentPage = "/insights/" + category.slug + "/" %}
+        {% if category.slug == "" %}{% set currentPage = "/insights/" %}
+        {% endif %}
+
+        <li class="mt-1 ">
+          {% if currentPage == page.url %}
+            <div class="flex flex-row items-center w-auto text-u2-black " >
+              <span class="mr-2">{{icons.filledCircle(size = 'h-4')}}</span>
+              <span>{{ category.displayTitle }}</span>
+            </div>
+          {% else  %}
+            <a class="flex flex-row items-center hover:text-u2-black" href="/insights/{{ category.slug +'/' if category.slug}}">
+              <span class="mr-2 ">{{icons.circle(size = 'h-4')}}</span>
+              <span class="">{{ category.displayTitle }}</span>
+            </a>
+          {% endif %}
+        </li>
+      {% endfor %}
+    </ul>
+  </div>
+{% endmacro %}
+
+{# Show a block of Insight posts in latest date order.
+Will exclude the current page if used on a post page.  #}
+{% macro latestInsightsBlock() %}
+  {% import "_components/_icons.njk" as icons with context %}
+  <div class="grid grid-cols-12 gap-u2-gap">
+    <div class="col-span-12">
+      <h2 class="mt-0 text-4xl font-display">Latest insights</h2>
+    </div>
+    {%- set maxArticles = 4 -%}
+    {%- set articlesShowing = 0 -%}
+
+    {% set posts = collections.insightPosts %}
+    {% for post in posts %}
+      {%- if  articlesShowing <  maxArticles -%}
+        {% if post.data.title != title %}
+          {%- set articlesShowing = articlesShowing + 1 -%}
+          {# hide the 4th article at the XL breakpoint #}
+          {% set hidingClasses = 'lg:block xl:hidden 2xl:block' if articlesShowing == 4 %}
+          <div class="col-span-12 md:col-span-6 xl:col-span-4 2xl:col-span-3 h-96 lg:h-128 xl:h-160 text-white bg-u2-black {{hidingClasses}} ">
+            {% import "_components/_icons.njk" as icons with context %}
+            <a class=" group" href="{{post.url}}">
+              <div class="flex flex-col justify-between h-full p-4 sm:p-6 md:p-4 lg:p-6 ">
+                <div class="">
+                  <div class="flex flex-row items-center text-u2-highlight-grey ">
+                    {{ icons.getIcon(post.data.type)}}
+                    <span class="ml-4 text-lg leading-tight font-display">{{post.data.type}}</span>
+                  </div>
+                  <h2 class="mt-4 text-3xl lg:text-2xl xl:text-3xl">{{post.data.title}}</h2>
+                  <p class="mt-2 text-base text-u2-highlight-grey">by {{post.data.author}} on {{post.data.date | readableDate}}</p>
+                  <p class="hidden mt-6 text-xl lg:text-lg lg:block">{{post.data.summary}}</p>
+                </div>
+                {{ buttons.button(text = 'Read now', url='/what-we-do/', colour='onBlack', group=true, topMargin='')}}
+              </div>
+            </a>
+          </div>
+        {%- endif -%}
+      {%- endif -%}
+    {% endfor %}
+
+    {# <p class="">articlesShowing : {{ articlesShowing }}</p> #}
+    <div class="col-span-12">
+      {{ buttons.button(text='Get more insights',url='/insights/') }}
+    </div>
+  </div>
+{% endmacro %}
+
+{# {% macro landingPagePostList(url = '', type = '', title = '', author = '', date = '', summary = '') %}
+  {% import "_components/_icons.njk" as icons with context %}
+  {% import "_components/_buttons.njk" as buttons with context %}
+
+  <a class="group" href="{{url}}">
+    <div class="flex flex-col justify-between h-full col-span-3 p-4 text-white md:p-8 2xl:p-4 3xl:p-8 bg-u2-black ">
+      <div>
+        <div class="flex flex-row items-center text-u2-highlight-grey ">
+          {{ icons.getIcon(type)}}
+          <span class="ml-4 text-lg leading-tight font-display">{{type}}</span>
+        </div>
+        <h2 class="mt-6 text-3xl lg:text-2xl xl:text-3xl">{{title}}</h2>
+        <p class="mt-2 text-base text-u2-highlight-grey">by {{author}} on {{date | readableDate}}</p>
+        <p class="hidden mt-6 text-xl lg:text-lg xl:text-xl lg:block">{{summary}}</p>
+      </div>
+      {% import "_components/_buttons.njk" as buttons with context %}
+      {{ buttons.button(text = 'Read now', url='/what-we-do', colour='onBlack', group=true, topMargin='')}}
+    </div>
+  </a>
+{% endmacro %} #}

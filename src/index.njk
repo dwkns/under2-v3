@@ -1,98 +1,222 @@
 ---
-title: Page title
+title: High performance websites for Fintech firms — Under2
 layout: _regular_page.njk
-metadata:
-  title: Page title for the HEAD and OG
-  description: The page description 
-og_image:
-noindex: 
-sitemap:
+description: "High-performance, fast loading websites have a better user experience, drive more conversions and rank higher for SEO."
+robots: 
+sitemap: include
 ---
-{%- from "_components/components.njk" import component -%}
-{# Import all components  optional: ignore missing #}
-<section class="dwkns-mt">
-  <div class="dwkns-container">
-    <h1  class="text-4xl ">Just a title</h1>
-    {{ component('simple-block', {
-        title: 'From the Simple Block'
-      })
-    }}
 
+{% import "_components/_general.njk" as general with context %}
+{% import "_components/_buttons.njk" as buttons with context %}
+{% import "_components/_icons.njk" as icons with context %}
+{% import "_components/_common.njk" as common with context %}
+{% import "_components/_njkUtils.njk" as njkUtils with context %}
 
-  </div>
-</section>
+<section class="mx-auto mt-8 sm:mt-16 max-w-screen-3xl px-u2-gutter-sm sm:px-u2-gutter ">
+  {% set fintech = "Fi<span class=\"tracking-[-0.15em]\">n</span><span class=\"tracking-[-0.14em]\">T</span>ech\'s" %}
 
-{# <section class="dwkns-container dwkns-grid dwkns-mt">
-  <div class="flex flex-row items-center justify-center col-span-1 py-1 bg-blue-300 ">
-    <p>1</p>
-  </div>
-  <div class="flex flex-row items-center justify-center col-span-1 py-1 bg-blue-300 ">
-    <p>2</p>
-  </div>
-  <div class="flex flex-row items-center justify-center col-span-1 py-1 bg-blue-300 ">
-    <p>3</p>
-  </div>
-  <div class="flex flex-row items-center justify-center col-span-1 py-1 bg-blue-300 ">
-    <p>4</p>
-  </div>
-  <div class="flex flex-row items-center justify-center col-span-1 py-1 bg-blue-300 ">
-    <p>5</p>
-  </div>
-  <div class="flex flex-row items-center justify-center col-span-1 py-1 bg-blue-300 ">
-    <p>6</p>
-  </div>
-  <div class="flex flex-row items-center justify-center col-span-1 py-1 bg-blue-300 ">
-    <p>7</p>
-  </div>
-  <div class="flex flex-row items-center justify-center col-span-1 py-1 bg-blue-300 ">
-    <p>8</p>
-  </div>
-  <div class="flex flex-row items-center justify-center col-span-1 py-1 bg-blue-300 ">
-    <p>9</p>
-  </div>
-  <div class="flex flex-row items-center justify-center col-span-1 py-1 bg-blue-300 ">
-    <p>10</p>
-  </div>
-  <div class="flex flex-row items-center justify-center col-span-1 py-1 bg-blue-300 ">
-    <p>11</p>
-  </div>
-  <div class="flex flex-row items-center justify-center col-span-1 py-1 bg-blue-300 ">
-    <p>12</p>
-  </div>
-</section>
+  <div class="grid grid-cols-12 gap-u2-gap">
+    <div class="col-span-12 mt-4 sm:mt-12 lg:col-span-6">
+      <h1 class="my-0 text-[44px] sm:text-[55px] lg:text-[50px] xl:text-[55px]" >Fast loading websites <span class="sm:block ">get more customers.</span>
+      </h1>
+      {# <p class="text-2xl sm:text-3xl lg:text-2xl xl:text-3xl" >Don't spend a penny on optimisation <span class="sm:block ">unless you've first invested in speed</span></p> #}
+      <p class="my-8 text-2xl sm:text-3xl lg:text-2xl xl:text-3xl text-u2-black">Under2 help B2B Fintechs improve the <span class="sm:block">performance of their websites.</span></p>
+       {{ buttons.button(text = 'Find out how', url='/what-we-do/', topMargin='mt-8')}}
+    </div>
 
-<section class="dwkns-mt max-w-125% mx-auto dwkns-grid mt-4">
-  <div class="col-span-12  bg-blue-300 h-48"></div>
-</section>
+    <div class="flex flex-row items-end col-span-12 mt-8 lg:row-span-2 lg:order-none lg:col-span-6 lg:col-start-7 lg:mt-0">
+      <div class="grid w-full h-auto grid-cols-12 gap-2 lg:mb-[4.5rem] font-normal  text-u2-white ">
 
+        <div class="hidden col-span-3 col-start-1 row-span-6 sm:flex-col sm:flex text-u2-highlight-grey">
+          <div class="flex flex-row items-center my-0 h-3/5">
+            <p class="my-0">Optimisation</p>
+          </div>
+          <div class="flex flex-row items-center my-0 h-2/5">
+            <p class="my-0">Foundation</p>
+          </div>
+        </div>
 
-<section class="dwkns-container dwkns-mt dwkns-grid mt-4">
-  <div class="col-span-6 lg:col-span-3 bg-blue-300 h-48"></div>
-  <div class="col-span-6 lg:col-span-3 bg-blue-300 h-48"></div>
-  <div class="col-span-6 lg:col-span-3 bg-blue-300 h-48"></div>
-  <div class="col-span-6 lg:col-span-3 bg-blue-300 h-48"></div>
+        <div class="flex items-center justify-center col-span-4 col-start-9 roundedx sm:col-span-2 sm:col-start-11 bg-u2-darkBlue">
+          <p class="py-2 my-0 text-base ">SEO</p>
+        </div>
+        <div class="flex items-center justify-center col-span-7 col-start-7 roundedx sm:col-span-4 sm:col-start-9 bg-u2-darkBlue">
+          <p class="py-2 my-0 text-base text-right">CRO</p>
+        </div>
+        <div class="flex items-center justify-center col-span-9 col-start-5 roundedx sm:col-span-6 sm:col-start-7 bg-u2-darkBlue">
+          <p class="py-2 my-0 text-base text-right">UX</p>
+        </div>
+        <div class="flex items-center justify-center col-span-12 roundedx sm:col-span-9 sm:col-start-4 bg-u2-green">
+          <p class="py-2 my-0 text-base text-center">Site speed</p>
+        </div>
+        <div class="flex items-center justify-center col-span-4 roundedx sm:col-span-3 sm:col-start-4 bg-u2-darkBlue">
+          <p class="py-2 my-0 text-base text-center">Content</p>
+        </div>
+        <div class="flex items-center justify-center col-span-4 roundedx sm:col-span-3 sm:col-start-7 bg-u2-darkBlue">
+          <p class="py-2 my-0 text-base text-center">Technology</p>
+        </div>
+        <div class="flex items-center justify-center col-span-4 roundedx sm:col-span-3 sm:col-start-10 bg-u2-darkBlue">
+          <p class="py-2 my-0 text-base text-center">Design</p>
+        </div>
+      </div>
 
-  <div class="col-span-12  bg-blue-300 h-48"></div>
+    </div>
 
-  <div class="col-span-12 sm:col-span-6  bg-blue-300 h-48"></div>
-  <div class="col-span-12 sm:col-span-6  bg-blue-300 h-48"></div>
+    {# <div class="items-end order-last col-span-12 col-start-1 mt-8 lg:col-span-6 lg:col-start-1 lg:mt-0">
+      <p class="my-0 text-xl text-u2-black">Under2 help {{fintech |safe }} improve the <span class="sm:block">performance of their websites.</span></p>
+      {{ buttons.button(text = 'Find out how', url='/what-we-do/', topMargin='mt-8')}}
+    </div> #}
 
-  <div class="col-span-12 lg:col-span-4 bg-blue-300 h-48"></div>
-  <div class="col-span-12 lg:col-span-4 bg-blue-300 h-48"></div>
-  <div class="col-span-12 lg:col-span-4 bg-blue-300 h-48"></div>
+  </section>
 
-  <div class="col-span-12 sm:col-span-6 lg:col-span-3 bg-blue-300 h-48"></div>
-  <div class="col-span-12 sm:col-span-6 lg:col-span-3 bg-blue-300 h-48"></div>
-  <div class="col-span-12 sm:col-span-6 lg:col-span-3 bg-blue-300 h-48"></div>
-  <div class="col-span-12 sm:col-span-6 lg:col-span-3 bg-blue-300 h-48"></div>
+  {{ common.dividerLine() }}
 
-</section> #}
+  <section class="mx-auto max-w-screen-3xl px-u2-gutter-sm sm:px-u2-gutter">
+    <div class="grid grid-cols-12 gap-u2-gap text-u2-white">
 
-<section class="dwkns-mt">
-  <div class="mt-4 mx-auto flex flex-row items-center justify-center py-1.5 max-w-100% bg-blue-300">
-    <p>100%% of 1280px</p>
-  </div>
-  <div class="mt-4 mx-auto flex flex-row items-center justify-center py-1.5 max-w-125% bg-blue-300">
-    <p>125% of 1280px</p>
-  </div>
-</section>
+      <div class="col-span-12 bg-u2-black u2-gs-wrapper-tall sm:u2-gs-wrapper md:col-span-6 md:u2-gs-wrapper-tall lg:col-span-4 xl:col-span-3 ">
+
+        <div class="relative flex flex-col h-full p-4 sm:p-8 bg-u2-black text-u2-white u2-gs-element">
+          <div class="flex flex-row items-center text-u2-highlight-grey ">
+            {{ icons.stat()  }}
+            <p class="my-0 ml-3 font-display">Stat</span>
+          </div>
+          <div class="flex flex-col justify-between h-full ">
+            <div class="flex flex-col justify-center flex-grow ">
+              <p class="text-massive-fluid font-display ">28%</p>
+              <p class="mt-2 mb-0 text-2xl">Won’t return to a slow loading website.</p>
+            </div>
+            <div class="flex flex-row items-center text-u2-highlight-grey ">
+              {{icons.getVisitorsBack(size='w-6 h-auto')}}
+              <p class="my-0 ml-3 ">Get your visitors back</p>
+
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-span-12 bg-u2-black u2-gs-wrapper-tall sm:u2-gs-wrapper md:col-span-6 md:u2-gs-wrapper-tall lg:col-span-4 xl:col-span-3 ">
+
+        <div class="relative flex flex-col h-full p-4 sm:p-8 bg-u2-black text-u2-white u2-gs-element">
+
+          <div class="flex flex-row items-center text-u2-highlight-grey ">
+            {{ icons.stat()  }}
+            <p class="my-0 ml-3 font-display">Stat</p>
+          </div>
+          <div class="flex flex-col justify-center flex-grow ">
+            <p class="text-massive-fluid font-display">49%</p>
+            <p class="mt-2 mb-0 text-2xl">Expect a page to load in under two seconds</p>
+          </div>
+
+          <div class="flex flex-row items-center text-u2-highlight-grey ">
+            {{icons.speed(size='w-6 h-auto')}}
+            <p class="my-0 ml-3 ">Speed up your site</p>
+          </div>
+
+        </div>
+
+      </div>
+
+      <div class="col-span-12 bg-u2-black u2-gs-wrapper-tall sm:u2-gs-wrapper md:col-span-6 md:u2-gs-wrapper-tall lg:col-span-4 xl:col-span-3 ">
+
+        <div class="relative flex flex-col h-full p-4 sm:p-8 bg-u2-black text-u2-white u2-gs-element">
+          <div class="flex flex-row items-center text-u2-highlight-grey ">
+            {{ icons.stat()  }}
+            <p class="my-0 ml-3 font-display">Stat</p>
+          </div>
+          <div class="flex flex-col justify-between h-full ">
+            <div class="flex flex-col justify-center flex-grow ">
+              <p class="text-massive-fluid font-display ">53%</p>
+              <p class="mt-2 mb-0 text-2xl">Abandon mobile sites taking over three seconds to load.</p>
+            </div>
+            <div class="flex flex-row items-center text-u2-highlight-grey ">
+              {{icons.rebuildAudience(size='w-6 h-auto')}}
+              <p class="my-0 ml-3 ">Build your audience</p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="col-span-12 bg-u2-black u2-gs-wrapper-tall sm:u2-gs-wrapper md:col-span-6 md:u2-gs-wrapper-tall lg:col-span-4 xl:col-span-3 lg:hidden xl:block">
+
+        <div class="relative flex flex-col h-full p-4 sm:p-8 bg-u2-black text-u2-white u2-gs-element">
+          <div class="flex flex-row items-center text-u2-highlight-grey ">
+            {{ icons.stat()  }}
+            <p class="my-0 ml-3 font-display">Stat</p>
+          </div>
+          <div class="flex flex-col justify-between h-full ">
+            <div class="flex flex-col justify-center flex-grow ">
+              <p class="text-massive-fluid font-display ">2%</p>
+              <p class="mt-2 mb-0 text-2xl">Increase in conversions for a 1s increase in page speed.</p>
+            </div>
+            <div class="flex flex-row items-center text-u2-highlight-grey ">
+              {{icons.money(size='w-6 h-auto')}}
+              <p class="my-0 ml-3 ">Get more customers</p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  {{ common.divider() }}
+
+  <section class="mx-auto max-w-screen-3xl px-u2-gutter-sm sm:px-u2-gutter">
+
+    <div class="grid grid-cols-12 gap-u2-gap">
+      <div class="col-span-12 lg:col-span-6">
+        <h2 class="mt-0 text-5xl ol-span-2 lg:col-span-1 font-display text-u2-black">Improving your website performance means...</h2>
+        <div class="flex flex-col text-2xl sm:text-3xl lg:text-2xl" >
+          <div class="flex items-center mt-8">{{icons.filledCircle(size='h-3 mr-4')}}
+            <p class="my-0">More conversions</p>
+          </div>
+          <div class="flex items-center mt-4">{{icons.filledCircle(size='h-3 mr-4')}}
+            <p class="my-0">Better SEO performance</p>
+          </div>
+          <div class="flex items-center mt-4">{{icons.filledCircle(size='h-3 mr-4')}}
+            <p class="my-0">Improved user experience</p>
+          </div>
+          <div class="flex items-center mt-4">{{icons.filledCircle(size='h-3 mr-4')}}
+            <p class="my-0">Higher sales</p>
+          </div>
+          <div class="flex items-center mt-4">{{icons.filledCircle(size='h-3 mr-4')}}
+            <p class="my-0">Happier customers</p>
+          </div>
+          {# <div class="flex items-center flex-grow mt-2">{{icons.filledCircle(size='h-3 mr-4')}}<p >Something else</p></div> #}
+        </div>
+      </div>
+      <div class="col-span-12 mt-4 lg:col-span-6 u2-gs-wrapper-tall sm:u2-gs-wrapper lg:u2-gs-wrapper-sq xl:u2-gs-wrapper">
+
+        <div class="relative flex flex-col h-full p-4 bg-u2-black sm:p-8 text-u2-white u2-gs-element">
+
+          <div class="flex flex-row items-center text-u2-highlight-grey ">
+            {{ icons.testimonial()  }}
+            <span class="ml-4 font-display">Testimonial</span>
+          </div>
+          {% set testimonial = content.testimonials.marqeta %}
+          <div class="flex flex-col justify-center flex-grow ">
+            <p class="text-xl md:text-2xl">{{testimonial.quote}}</p>
+            <p class="mt-4 mb-0 text-lg text-u2-highlight-grey ">{{testimonial.person}}</p>
+            <p class="my-0 text-lg text-u2-highlight-grey">{{testimonial.role}}</p>
+          </div>
+
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  {{ common.divider() }}
+
+  <section class="mx-auto max-w-screen-3xl px-u2-gutter-sm sm:px-u2-gutter">
+    {{ common.clients()}}
+  </section>
+
+  <section class="mx-auto mt-12 max-w-screen-3xl px-u2-gutter-sm sm:px-u2-gutter md:mt-48">
+    {%- import "_components/_insights_components.njk" as insights with context -%}
+    {{insights.latestInsightsBlock()}}
+  </section>
+
+  <div class="flex flex-row mt-8 text-base justify-end-end lg:mt-0 sm:text-lg lg:text-base"></div>

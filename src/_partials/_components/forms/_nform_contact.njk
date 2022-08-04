@@ -1,0 +1,138 @@
+<form  id='contact-on-{{page.url}}' name="Contact on {{page.url}}">
+    <label for="firstName">First name</label>
+    <input name="firstName"
+      id = "firstName"  
+      type="text"  
+      x-bind:value="fields.firstName.default" 
+      autocomplete="given-name" 
+      x-show='fields.firstName.visible'  >
+    <p class="form-input-error" 
+      x-show.transition.in="fields.firstName.errorMessage" 
+      x-text="fields.firstName.errorMessage"></p>
+
+    <label 
+      for="lastName" 
+      x-show='fields.lastName.visible'>Last name</label>
+    <input 
+      name="lastName"
+      id = "lastName"  
+      type="text"  
+      x-bind:value="fields.lastName.default" 
+      autocomplete="family-name" 
+      x-show='fields.lastName.visible'>
+    <p 
+      class="form-input-error" 
+      x-show.transition.in="fields.lastName.errorMessage" 
+      x-text="fields.lastName.errorMessage"></p>
+
+    <label 
+      for="email" 
+      x-show='fields.email.visible'>Email</label>
+    <input 
+      name="email"  
+      id = "email"  
+      type="text"  
+      x-bind:value="fields.email.default" 
+      autocomplete="email" 
+      x-show="fields.email.visible">
+    <p 
+      class="form-input-error" 
+      x-show.transition.in="fields.email.errorMessage" 
+      x-text="fields.email.errorMessage"></p>
+
+    <label 
+      for="jobTitle" 
+      x-show='fields.jobTitle.visible'>Job title</label>
+    <input 
+      name="jobTitle"  
+      id = "jobTitle"  
+      type="text"  
+      x-bind:value="fields.jobTitle.default" 
+      autocomplete="organization-title" 
+      x-show='fields.jobTitle.visible' >
+    <p 
+      class="form-input-error" 
+      x-show.transition.in="fields.jobTitle.errorMessage" 
+      x-text="fields.jobTitle.errorMessage"></p>
+    <label 
+      for="company" 
+      x-show='fields.company.visible'>Company</label>
+    <input 
+      name="company"  
+      id = "company"  
+      type="text"  
+      x-bind:value="fields.company.default" 
+      autocomplete="organization" 
+      x-show='fields.company.visible' >
+    <p 
+      class="form-input-error" 
+      x-show.transition.in="fields.company.errorMessage" 
+      x-text="fields.company.errorMessage"></p>
+    <label 
+      for="country" 
+      x-show='fields.country.visible'>Country / Region</label>
+    <select 
+      name="country"  
+      id = "country"  
+      type="text"  
+      x-bind:value="fields.country.default" 
+      autocomplete="country" 
+      x-show='fields.country.visible' >
+      {{- njkUtils.countryList() -}}
+    </select>
+    
+    <label 
+for="message" 
+x-show='fields.message.visible'>Message</label>
+    <textarea id = "message" x-show='fields.message.visible' x-bind:value="fields.message.default"   name="message" cols="40" id="message" rows="5" ></textarea>
+    <p class="form-input-error" 
+x-show.transition.in="fields.message.errorMessage" 
+x-text="fields.message.errorMessage"></p>
+
+    <p class="block mt-4 text-sm">{{site.defaultMessages.privacy | safe }}</p>
+
+    <div  x-show='fields.acceptMarketing.visible' >
+      <p class="text-sm">{{site.defaultMessages.acceptMarketing}}</p>
+      <div class="flex flex-row items-center mt-4">
+        <input class="mr-3" type="checkbox" id="acceptMarketing" name="acceptMarketing" value="1">
+        <label class="mt-0 text-sm" for="acceptMarketing" >{{site.defaultMessages.acceptMarketingCheckboxLabel}}</label>
+      </div>
+    </div>
+
+    <input type="hidden" id="agreeToPrivacy" name="agreeToPrivacy" value="1">
+    <input type="hidden" id="aoFormID" name="aoFormID" value="{{site.forms[formType].aoFormID}}">
+    <input type="hidden" id="aoListID" name="aoListID" value="{{site.forms[formType].aoListID}}">
+    <input type="hidden" id="enviroment" name="enviroment" value="{{utils.currentEnv}}">
+    <input type="hidden" id="currentBaseURL" name="currentBaseURL" value="{{site[utils.currentEnv].baseURL}}">
+    <input type="hidden" id="pageURL" name="pageURL" value="{{page.url}}">
+    <input type="hidden" id="formType" name="formType" value="{{formType}}">
+    {%- if formType == 'gatedContent' -%}
+      <input type="hidden" id="gatedContentTitle" name="gatedContentTitle" value="{{title}}">
+      <input type="hidden" id="leadSource" name="leadSource" value="{{'Web - Gated Post: ' + title}}">
+      <input type="hidden" id="impliedOptIn" name="impliedOptIn" value="1">
+    {%- elif formType == 'contentUpgrade' -%}
+      <input type="hidden" id="contentUpgradeTitle" name="contentUpgradeTitle" value="{{upgradeDetails.formTitle}}">
+      <input type="hidden" id="leadSource" name="leadSource" value="{{'Web - Content Upgrade: ' + title}}">
+      <input type="hidden" id="upgradeURL" name="upgradeURL" value="{{upgradeDetails.upgradeURL}}">
+      <input type="hidden" id="impliedOptIn" name="impliedOptIn" value="1">
+    {%- elif formType == 'webinar' -%}
+      <input type="hidden" id="webinarTitle" name="webinarTitle" value="{{title}}">
+      <input type="hidden" id="leadSource" name="leadSource" value="{{'Web - Webinar Registration: ' + title}}">
+      <input type="hidden" id="impliedOptIn" name="impliedOptIn" value="1">
+    {%- elif type == 'pastWebinar' -%}
+      <input type="hidden" id="pastWebinarTitle" name="pastWebinarTitle" value="{{title}}">
+      <input type="hidden" id="leadSource" name="leadSource" value="{{'Web - Past Webinar: ' + title}}">
+      <input type="hidden" id="impliedOptIn" name="impliedOptIn" value="1">
+    {%- elif formType == 'contact' -%}
+      <input type="hidden" id="leadSource" name="leadSource" value="Web - Contact">
+      <input type="hidden" id="impliedOptIn" name="impliedOptIn" value="1">
+    {%- elif formType == 'learnFromUs' -%}
+      <input type="hidden" id="leadSource" name="leadSource" value="Web - Email Signup">
+      <input type="hidden" id="impliedOptIn" name="impliedOptIn" value="1">
+    {%- elif formType == 'letsTalk' -%}
+      <input type="hidden" id="leadSource" name="leadSource" value="Web - Let's Talk">
+<input type="hidden" id="impliedOptIn" name="impliedOptIn" value="1">
+    {%- endif -%}
+    <button id='' x-text="formButtonText" @click.prevent="submit" class="px-8 py-2 mt-8 mb-4 text-base font-semibold text-center transition duration-100 ease-in-out transform rounded-sm cursor-pointer focus:outline-none bg-u2-black hover:bg-u2-gold hover:scale-105 text-u2-white hover:text-u2-black"></button>
+  </form>
+{%- endmacro -%}

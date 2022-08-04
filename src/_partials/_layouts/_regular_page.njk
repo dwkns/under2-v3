@@ -1,12 +1,14 @@
 ---
 layout: _page_skeleton.njk
 ---
-<header class=""> 
-{% include '_includes/_header.njk' %}    
-</header>  
-<main class=""> 
+<header class="mx-auto mt-u2-gutter md:mt-8 max-w-screen-3xl px-u2-gutter-sm sm:px-u2-gutter">
+  {% include '_includes/_nav.njk' %}
+</header>
+<main class="text-xl">
   {{ content | safe }}
 </main>
-<footer class="">
-{% include '_includes/_footer.njk' %}  
+<footer>
+  {% import "_components/_common.njk" as common with context %}
+  {{ common.dividerLine() }}
+  {% include '_includes/_footer.njk' %}
 </footer>

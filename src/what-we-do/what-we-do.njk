@@ -1,0 +1,113 @@
+---
+title: What we do.
+headTagTitleForSEO: Consultancy, website build and support for FinTech.
+layout: _regular_page.njk
+description: "Website performance consultancy and build services for FinTech"
+og_image: '/images/what-we-do-og.png'
+eleventyNavigation:
+  key: services
+  title: What we do
+---
+{% import "_components/forms/_forms.njk" as forms with context %}
+{% import "_components/_buttons.njk" as buttons with context %}
+{% import "_components/_general.njk" as general with context %}
+{% import "_components/_common.njk" as common with context %}
+{% import "_components/_icons.njk" as icons with context %}
+
+{# {{ headers.withBreadCrumb( pageTitle = 'Performance means conversions' , siteSection = 'services'  )  }} #}
+
+{% import "_components/_common.njk" as common with context %}
+{{ common.pageHeader(
+      title = "Speed is the foundation on which you optimise",
+      subTitle = "" ,
+      breadcrumb = { title: title , breadCrumbIsH1: true, breadCrumbLink: "" }
+    ) }}
+<section class="mx-auto mt-12 max-w-screen-3xl px-u2-gutter-sm sm:px-u2-gutter">
+  <div class="grid grid-cols-12 gap-u2-gap">
+    <div class="w-full col-span-12 text-xl lg:col-span-6" >
+      <p class="mt-0 mr-6">FinTech firms with the best websites are the ones winning customers and building billion-dollar valuations.</p>
+      <p class="mt-8 mr-6">Your site is at the heart of your marketing efforts, and business success is so much easier when you get it right. We'll guide you through the choices and tradeoffs in building a modern site. As a result, you'll drive more conversions, have better SEO performance and improved user experience.</p>
+      <p class="mt-8 mr-6">High performance comes from having clear goals, a motivated team and a common purpose. Under2 understand FinTech, and we know how to build high-performance websites. We'll help you set your goals, get the basics right and then optimise the critical elements to brilliance.</p>
+    </div>
+    <div class="flex flex-col justify-center w-full col-span-12 p-4 text-xl bg-u2-black lg:col-span-6 sm:p-8 text-u2-white" >
+      <div>
+        <p class="my-0 font-black text-8xl sm:text-9xl text-u2-orange ">300%</p>
+        <h2 class="mt-4">Printed Edtions</h2>
+        <h3 class="w-10/12 mt-4">How a New High-Performance Website Led to 300% More Search Volume</h3>
+        {{ buttons.button(text = 'Read the case study', url='/case-studies/printed-editions-increased-organic-search-volume/', colour='onBlack', topMargin='mt-4')}}
+      </div>
+    </div>
+  </div>
+</section>
+
+{{ common.divider() }}
+<section class="mx-auto max-w-screen-3xl px-u2-gutter-sm sm:px-u2-gutter text-u2-white">
+  <div class="grid grid-cols-12 gap-u2-gap">
+    <div class="col-span-12">
+      <h2 class="text-4xl text-u2-black font-display">Our services</h2>
+    </div>
+
+    <div class="h-full col-span-12 px-4 pt-4 pb-8 lg:col-span-6 xl:col-span-3 md:px-8 md:pt-8 md:pb-16 bg-u2-black ">
+      <h2 class="mt-8 text-3xl font-display">Performance consultancy</h2>
+      <p class="mt-8">We'll identify your site performance issues and provide actionable advice for improving: </p>
+      <ul>
+        <li class="bullets bullets-cream">Site speed</li>
+        <li class="bullets bullets-cream">SEO performance</li>
+        <li class="bullets bullets-cream">Usability & UX issues</li>
+        <li class="bullets bullets-cream">Conversions & CRO</li>
+      </ul>
+    </div>
+
+    <div class="h-full col-span-12 px-4 pt-4 pb-8 lg:col-span-6 xl:col-span-3 md:px-8 md:pt-8 md:pb-16 bg-u2-black ">
+      <h2 class="mt-8 text-3xl font-display">Project planning and scoping</h2>
+      <p class="mt-8">Our 5 step programme maps out a strategy for the entire website lifecycle.</p>
+      <h3 class="mt-8 h3">Discover <span class="text-u2-gold">&#10132;</span> Define <span class="text-u2-gold">&#10132;</span> Design <span class="text-u2-gold">&#10132;</span> Deliver <span class="text-u2-gold">&#10132;</span> Optimise</h3>
+      <p class="mt-8">We provide strategy, planning, desgin and implementation plans which reduce risk and maximise successful delivery.</p>
+
+    </div>
+
+    <div class="h-full col-span-12 px-4 pt-4 pb-8 lg:col-span-6 xl:col-span-3 md:px-8 md:pt-8 md:pb-16 bg-u2-black ">
+      <h2 class="mt-8 text-3xl font-display">Website development</h2>
+      <p class="mt-8">Rebuild your current site with performance fundamentals baked in. Or create a brand new site from scratch designed to deliver on your business goals.</p>
+      <p class="mt-8">We only build sites for clients that have been though our project planning and scoping programme</p>
+    </div>
+
+    <div class="h-full col-span-12 px-4 pt-4 pb-8 lg:col-span-6 xl:col-span-3 md:px-8 md:pt-8 md:pb-16 bg-u2-black ">
+      <h2 class="mt-8 text-3xl font-display">Optimisation</h2>
+      <p class="mt-4 lg:mt-16">This is where high-performance happens. We'll continually monitor, analyse and improve across a set of metrics including conversions (CRO), search performance (SEO), usability and site speed. </p>
+      <p class="mt-8">We only optimise sites that we build. </p>
+    </div>
+  </div>
+</section>
+{{ common.divider() }}
+<section class="mx-auto max-w-screen-3xl px-u2-gutter-sm sm:px-u2-gutter ">
+  {{ common.clients()}}
+</section>
+{{ common.divider() }}
+<section class="mx-auto max-w-screen-3xl px-u2-gutter-sm sm:px-u2-gutter ">
+  <div class="grid grid-cols-12 gap-u2-gap">
+    <div class="col-span-12 lg:col-span-6">
+      <h2 class="mt-0 text-4xl font-display">Frequently asked questions</h2>
+    </div>
+    <div class="col-span-12 lg:col-span-6">
+      {{ common.faq(faqs) }}
+    </div>
+  </div>
+</section>
+
+{{ common.divider() }}
+
+<section class="mx-auto mt-24 max-w-screen-3xl px-u2-gutter-sm sm:px-u2-gutter">
+
+  <div class="grid grid-cols-12 gap-u2-gap">
+
+    {%- import "_components/forms/_contact_v2.njk" as contact with context -%}
+    
+    {{ contact.form({
+    title: "Let's talk",
+    leader: "Contact us to set up a meeting.<br>We’d love to speak with you!"
+    }
+   )}}
+
+  </div>
+</section>
